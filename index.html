@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Justice - Mobile First Legal Services</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <!-- Tailwind CSS with Custom Configuration -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            800: '#1e293b',
+                            900: '#0f172a',
+                            950: '#020617', // Deepest Navy
+                        },
+                        gold: {
+                            300: '#FDE68A',
+                            400: '#fbbf24',
+                            500: '#D4AF37', // Classic Metallic Gold
+                            600: '#B4941F',
+                            light: '#f3e5ab',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Cinzel', 'serif'],
+                        sans: ['Lato', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "linear-gradient(to bottom, rgba(2, 6, 23, 0.85), rgba(2, 6, 23, 0.95))",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="bg-navy-950 font-sans text-gray-300 overflow-x-hidden">
+
+    <!-- NAVIGATION -->
+    <!-- Mobile First: Fixed height, simple layout. Transforms on lg screens. -->
+    <nav class="fixed w-full z-50 bg-navy-950/95 backdrop-blur-md border-b border-gold-600/30 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex flex-col justify-center">
+                    <h1 class="font-serif text-xl sm:text-2xl font-bold text-gold-500 tracking-widest uppercase">
+                        Digital Justice
+                    </h1>
+                    <div class="h-1 w-12 bg-gradient-to-r from-gold-500 to-transparent mt-1 transform -skew-x-12"></div>
+                </div>
+
+                <!-- Desktop Menu (Hidden on Mobile) -->
+                <div class="hidden lg:block">
+                    <div class="ml-10 flex items-baseline space-x-8 font-serif text-xs tracking-widest text-gold-300">
+                        <a href="#home" class="hover:text-white transition-colors duration-300 uppercase">Home</a>
+                        <a href="#services" class="hover:text-white transition-colors duration-300 uppercase">Services</a>
+                        <a href="#attorneys" class="hover:text-white transition-colors duration-300 uppercase">Our Team</a>
+                        <a href="#faq" class="hover:text-white transition-colors duration-300 uppercase">FAQ</a>
+                    </div>
+                </div>
+
+                <!-- Desktop CTA (Hidden on Mobile) -->
+                <div class="hidden lg:block">
+                    <a href="#contact" class="bg-gradient-to-r from-gold-600 to-gold-500 text-navy-950 px-6 py-2 rounded-sm font-bold text-xs uppercase tracking-wider hover:brightness-110 transition-all shadow-lg hover:shadow-gold-500/20">
+                        Consultation
+                    </a>
+                </div>
+
+                <!-- Mobile Hamburger Button (Visible on Mobile) -->
+                <div class="-mr-2 flex lg:hidden">
+                    <button type="button" onclick="toggleMenu()" class="inline-flex items-center justify-center p-2 rounded-md text-gold-500 hover:text-white focus:outline-none" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel (Slide-in Drawer) -->
+        <div class="lg:hidden fixed inset-0 z-50 bg-navy-950/98 mobile-menu-enter" id="mobile-menu">
+            <!-- Close Button -->
+            <div class="flex justify-end p-6">
+                <button onclick="toggleMenu()" class="text-gold-500 hover:text-white">
+                    <i class="fas fa-times text-3xl"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Links -->
+            <div class="px-6 py-8 space-y-6 flex flex-col items-center text-center font-serif tracking-widest">
+                <a href="#home" onclick="toggleMenu()" class="text-gold-300 hover:text-white text-xl uppercase py-2 border-b border-transparent hover:border-gold-600 transition-all">Home</a>
+                <a href="#services" onclick="toggleMenu()" class="text-gold-300 hover:text-white text-xl uppercase py-2 border-b border-transparent hover:border-gold-600 transition-all">Services</a>
+                <a href="#attorneys" onclick="toggleMenu()" class="text-gold-300 hover:text-white text-xl uppercase py-2 border-b border-transparent hover:border-gold-600 transition-all">Our Team</a>
+                <a href="#contact" onclick="toggleMenu()" class="text-gold-300 hover:text-white text-xl uppercase py-2 border-b border-transparent hover:border-gold-600 transition-all">Contact</a>
+                
+                <div class="mt-8 w-full max-w-xs">
+                    <a href="#contact" onclick="toggleMenu()" class="block w-full bg-gold-600 text-navy-950 py-4 rounded font-bold uppercase tracking-wider text-sm shadow-lg">
+                        Get Legal Help
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <!-- Mobile First: Full height, centered text. -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center bg-hero-pattern px-4 sm:px-6">
+        <div class="relative z-10 text-center max-w-4xl mx-auto fade-in-up">
+            <div class="inline-block mb-4 px-3 py-1 border border-gold-500/30 rounded-full bg-navy-900/50 backdrop-blur-sm">
+                <span class="text-gold-400 text-[10px] uppercase tracking-[0.2em] font-bold">Est. 2010 • Punjab Bar Certified</span>
+            </div>
+            
+            <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight gold-text-shadow">
+                Justice <span class="text-gold-500">Defended.</span><br>
+                Rights <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-300 to-gold-600">Protected.</span>
+            </h1>
+            
+            <p class="text-gray-300 text-base sm:text-lg md:text-xl mb-10 max-w-2xl mx-auto font-light leading-relaxed">
+                Your trusted legal partner in Pakistan. We bridge the gap between complex laws and your peace of mind with expert digital and traditional representation.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center w-full sm:w-auto">
+                <!-- Mobile: Button is w-full (full width) -->
+                <a href="#contact" class="w-full sm:w-auto px-8 py-4 bg-gold-600 hover:bg-gold-500 text-navy-950 font-bold rounded uppercase tracking-widest text-xs sm:text-sm transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(212,175,55,0.4)] text-center">
+                    Start Consultation
+                </a>
+                <a href="#services" class="w-full sm:w-auto px-8 py-4 border border-gold-500/50 text-gold-400 hover:text-white hover:border-gold-400 font-bold rounded uppercase tracking-widest text-xs sm:text-sm transition-all text-center">
+                    Explore Services
+                </a>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-gold-500 text-xl"></i>
+        </div>
+    </section>
+
+    <!-- STATS BANNER -->
+    <!-- Mobile: Stacked grid. Desktop: Single row. -->
+    <div class="bg-gold-600 py-8 px-4 relative z-20 shadow-xl">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8 text-center divide-x divide-navy-900/10">
+            <div class="p-2">
+                <div class="font-serif text-3xl font-bold text-navy-950">15+</div>
+                <div class="text-[10px] uppercase tracking-widest text-navy-900 font-bold mt-1">Years Experience</div>
+            </div>
+            <div class="p-2">
+                <div class="font-serif text-3xl font-bold text-navy-950">3K+</div>
+                <div class="text-[10px] uppercase tracking-widest text-navy-900 font-bold mt-1">Cases Won</div>
+            </div>
+            <div class="p-2">
+                <div class="font-serif text-3xl font-bold text-navy-950">100%</div>
+                <div class="text-[10px] uppercase tracking-widest text-navy-900 font-bold mt-1">Confidentiality</div>
+            </div>
+            <div class="p-2">
+                <div class="font-serif text-3xl font-bold text-navy-950">24/7</div>
+                <div class="text-[10px] uppercase tracking-widest text-navy-900 font-bold mt-1">Support</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SERVICES SECTION -->
+    <section id="services" class="py-20 px-4 sm:px-6 bg-navy-900 relative">
+        <!-- Background Decor -->
+        <div class="absolute top-0 right-0 w-64 h-64 bg-gold-600/5 rounded-full blur-3xl"></div>
+        
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="font-serif text-3xl md:text-4xl text-gold-400 mb-4">Practice Areas</h2>
+                <div class="w-24 h-1 bg-gold-600 mx-auto rounded-full"></div>
+                <p class="mt-4 text-gray-400 max-w-xl mx-auto text-sm">Comprehensive legal solutions tailored to your specific needs.</p>
+            </div>
+
+            <!-- Mobile First Grid: 1 column -> 2 columns -> 3 columns -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Card 1 -->
+                <div class="group bg-navy-800 p-8 border border-gold-600/10 hover:border-gold-500/50 rounded-lg transition-all duration-300 hover:bg-navy-950 hover:-translate-y-2">
+                    <div class="w-14 h-14 bg-navy-900 rounded-full flex items-center justify-center border border-gold-600/30 mb-6 group-hover:bg-gold-600 group-hover:text-navy-950 transition-colors">
+                        <i class="fas fa-gavel text-2xl text-gold-500 group-hover:text-navy-900"></i>
+                    </div>
+                    <h3 class="font-serif text-xl text-white mb-3">Criminal Defense</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed mb-6">Aggressive representation for criminal charges. We protect your rights at every stage of the legal process.</p>
+                    <a href="practice-areas/criminal-defense.html" class="text-xs text-gold-500 uppercase tracking-widest hover:text-white flex items-center gap-2">
+                        Learn More <i class="fas fa-arrow-right text-[10px]"></i>
+                    </a>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="group bg-navy-800 p-8 border border-gold-600/10 hover:border-gold-500/50 rounded-lg transition-all duration-300 hover:bg-navy-950 hover:-translate-y-2">
+                    <div class="w-14 h-14 bg-navy-900 rounded-full flex items-center justify-center border border-gold-600/30 mb-6 group-hover:bg-gold-600 group-hover:text-navy-950 transition-colors">
+                        <i class="fas fa-users text-2xl text-gold-500 group-hover:text-navy-900"></i>
+                    </div>
+                    <h3 class="font-serif text-xl text-white mb-3">Family Law</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed mb-6">Compassionate guidance for divorce, custody, and inheritance matters under Pakistani law.</p>
+                    <a href="practice-areas/family-law.html" class="text-xs text-gold-500 uppercase tracking-widest hover:text-white flex items-center gap-2">
+                        Learn More <i class="fas fa-arrow-right text-[10px]"></i>
+                    </a>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="group bg-navy-800 p-8 border border-gold-600/10 hover:border-gold-500/50 rounded-lg transition-all duration-300 hover:bg-navy-950 hover:-translate-y-2">
+                    <div class="w-14 h-14 bg-navy-900 rounded-full flex items-center justify-center border border-gold-600/30 mb-6 group-hover:bg-gold-600 group-hover:text-navy-950 transition-colors">
+                        <i class="fas fa-building text-2xl text-gold-500 group-hover:text-navy-900"></i>
+                    </div>
+                    <h3 class="font-serif text-xl text-white mb-3">Corporate Law</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed mb-6">Strategic legal counsel for businesses, startups, and large corporations in compliance and contracts.</p>
+                    <a href="practice-areas/corporate-law.html" class="text-xs text-gold-500 uppercase tracking-widest hover:text-white flex items-center gap-2">
+                        Learn More <i class="fas fa-arrow-right text-[10px]"></i>
+                    </a>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="group bg-navy-800 p-8 border border-gold-600/10 hover:border-gold-500/50 rounded-lg transition-all duration-300 hover:bg-navy-950 hover:-translate-y-2">
+                    <div class="w-14 h-14 bg-navy-900 rounded-full flex items-center justify-center border border-gold-600/30 mb-6 group-hover:bg-gold-600 group-hover:text-navy-950 transition-colors">
+                        <i class="fas fa-laptop-code text-2xl text-gold-500 group-hover:text-navy-900"></i>
+                    </div>
+                    <h3 class="font-serif text-xl text-white mb-3">Cyber Crime</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed mb-6">Expert defense against digital fraud, harassment, and cybercrime allegations.</p>
+                    <a href="practice-areas/cyber-crime.html" class="text-xs text-gold-500 uppercase tracking-widest hover:text-white flex items-center gap-2">
+                        Learn More <i class="fas fa-arrow-right text-[10px]"></i>
+                    </a>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="group bg-navy-800 p-8 border border-gold-600/10 hover:border-gold-500/50 rounded-lg transition-all duration-300 hover:bg-navy-950 hover:-translate-y-2">
+                    <div class="w-14 h-14 bg-navy-900 rounded-full flex items-center justify-center border border-gold-600/30 mb-6 group-hover:bg-gold-600 group-hover:text-navy-950 transition-colors">
+                        <i class="fas fa-home text-2xl text-gold-500 group-hover:text-navy-900"></i>
+                    </div>
+                    <h3 class="font-serif text-xl text-white mb-3">Real Estate</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed mb-6">Secure your property investments with thorough documentation and dispute resolution.</p>
+                    <a href="practice-areas/real-estate.html" class="text-xs text-gold-500 uppercase tracking-widest hover:text-white flex items-center gap-2">
+                        Learn More <i class="fas fa-arrow-right text-[10px]"></i>
+                    </a>
+                </div>
+
+                 <!-- Card 6 -->
+                 <div class="group bg-navy-800 p-8 border border-gold-600/10 hover:border-gold-500/50 rounded-lg transition-all duration-300 hover:bg-navy-950 hover:-translate-y-2">
+                    <div class="w-14 h-14 bg-navy-900 rounded-full flex items-center justify-center border border-gold-600/30 mb-6 group-hover:bg-gold-600 group-hover:text-navy-950 transition-colors">
+                        <i class="fas fa-scale-balanced text-2xl text-gold-500 group-hover:text-navy-900"></i>
+                    </div>
+                    <h3 class="font-serif text-xl text-white mb-3">Civil Litigation</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed mb-6">Results-oriented representation in civil disputes, mediation, and court proceedings.</p>
+                    <a href="practice-areas/civil-litigation.html" class="text-xs text-gold-500 uppercase tracking-widest hover:text-white flex items-center gap-2">
+                        Learn More <i class="fas fa-arrow-right text-[10px]"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY CHOOSE US / MOBILE FIRST LAYOUT -->
+    <section class="py-20 bg-navy-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                
+                <!-- Image Section (Placeholder with solid background) -->
+                <div class="w-full lg:w-1/2 relative">
+                    <div class="absolute inset-0 bg-gold-600/20 transform translate-x-3 translate-y-3 rounded-lg"></div>
+                    <div class="relative h-96 bg-navy-800 rounded-lg shadow-2xl border border-gold-600/20 flex items-center justify-center">
+                        <div class="text-center text-gold-500">
+                            <i class="fas fa-balance-scale text-6xl mb-4"></i>
+                            <p class="text-sm uppercase tracking-widest">Legal Expertise</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content Section -->
+                <div class="w-full lg:w-1/2 text-left">
+                    <h4 class="text-gold-500 uppercase tracking-widest text-xs font-bold mb-2">Why Choose Digital Justice</h4>
+                    <h2 class="font-serif text-3xl md:text-4xl text-white mb-6">A Modern Approach to <br><span class="text-gold-500">Traditional Justice.</span></h2>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        We combine decades of legal expertise with modern technology to provide transparent, efficient, and accessible legal services. 
+                    </p>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-gold-500 mt-1 mr-3"></i>
+                            <span class="text-gray-300 text-sm">Real-time case tracking & digital documentation</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-gold-500 mt-1 mr-3"></i>
+                            <span class="text-gray-300 text-sm">Certified experts in Pakistani Law</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-gold-500 mt-1 mr-3"></i>
+                            <span class="text-gray-300 text-sm">Transparent fee structure with no hidden costs</span>
+                        </li>
+                    </ul>
+                    
+                    <a href="#attorneys" class="inline-block bg-navy-800 border border-gold-500 text-gold-400 px-8 py-3 rounded uppercase text-xs font-bold tracking-widest hover:bg-gold-600 hover:text-navy-950 transition-all">
+                        Meet Our Attorneys
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ATTORNEYS SECTION -->
+    <section id="attorneys" class="py-20 bg-navy-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-16">
+                <h2 class="font-serif text-3xl md:text-4xl text-gold-400 mb-4">Meet Our Attorneys</h2>
+                <div class="w-24 h-1 bg-gold-600 mx-auto rounded-full"></div>
+                <p class="mt-4 text-gray-400 max-w-2xl mx-auto text-sm">Experienced legal professionals dedicated to protecting your rights and interests.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Attorney 1 -->
+                <div class="bg-navy-800 rounded-lg overflow-hidden border border-gold-600/20 hover:border-gold-500/50 transition-all duration-300">
+                    <div class="h-80 bg-navy-900 flex items-center justify-center">
+                        <div class="text-center text-gold-500">
+                            <i class="fas fa-user-tie text-6xl mb-4"></i>
+                            <p class="text-xs uppercase tracking-widest">Attorney Photo</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-serif text-xl text-white mb-2">Zohaib Salman</h3>
+                        <p class="text-gold-400 text-sm uppercase tracking-widest mb-3">Advocate High Court</p>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-4">Advocate Zohaib Salman brings extensive legal expertise to the firm, specializing in complex litigation and dispute resolution. With a commitment to justice and client advocacy, he provides strategic legal solutions tailored to each client's unique needs.</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="w-8 h-8 rounded-full bg-navy-900 flex items-center justify-center text-gold-500 hover:bg-gold-500 hover:text-navy-900 transition-all"><i class="fab fa-linkedin-in text-sm"></i></a>
+                            <a href="#" class="w-8 h-8 rounded-full bg-navy-900 flex items-center justify-center text-gold-500 hover:bg-gold-500 hover:text-navy-900 transition-all"><i class="fas fa-envelope text-sm"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Attorney 2 -->
+                <div class="bg-navy-800 rounded-lg overflow-hidden border border-gold-600/20 hover:border-gold-500/50 transition-all duration-300">
+                    <div class="h-80 bg-navy-900 flex items-center justify-center">
+                        <div class="text-center text-gold-500">
+                            <i class="fas fa-user-tie text-6xl mb-4"></i>
+                            <p class="text-xs uppercase tracking-widest">Attorney Photo</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-serif text-xl text-white mb-2">Muhammad Azeem Chaudhary</h3>
+                        <p class="text-gold-400 text-sm uppercase tracking-widest mb-3">Advocate High Court</p>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-4">Advocate Muhammad Azeem Chaudhary is known for his exceptional legal acumen and dedication to client success. With a focus on civil and corporate litigation, he provides comprehensive legal representation with a client-centered approach.</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="w-8 h-8 rounded-full bg-navy-900 flex items-center justify-center text-gold-500 hover:bg-gold-500 hover:text-navy-900 transition-all"><i class="fab fa-linkedin-in text-sm"></i></a>
+                            <a href="#" class="w-8 h-8 rounded-full bg-navy-900 flex items-center justify-center text-gold-500 hover:bg-gold-500 hover:text-navy-900 transition-all"><i class="fas fa-envelope text-sm"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-20 bg-navy-900 border-t border-gold-600/20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="bg-navy-800 p-2 rounded-lg border border-gold-600/30 shadow-2xl relative overflow-hidden">
+                <!-- Gold Accent Line -->
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gold-600 to-gold-400"></div>
+
+                <!-- Formaloo Iframe -->
+                <iframe
+                    height="750"
+                    allowTransparency="true"
+                    frameborder="0"
+                    scrolling="yes"
+                    style="width:100%;border:none"
+                    src="https://digital-justice.formaloo.co/0qnz0p"
+                    id="formalooIframe"
+                    loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-navy-950 pt-16 pb-8 border-t border-gold-600/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <!-- Brand -->
+                <div>
+                    <h3 class="font-serif text-2xl text-gold-500 mb-4 font-bold">DIGITAL JUSTICE</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6">
+                        Providing top-tier legal representation with a commitment to integrity, transparency, and results.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-8 h-8 rounded-full bg-navy-800 flex items-center justify-center text-gold-500 hover:bg-gold-500 hover:text-navy-900 transition-all"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-navy-800 flex items-center justify-center text-gold-500 hover:bg-gold-500 hover:text-navy-900 transition-all"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-navy-800 flex items-center justify-center text-gold-500 hover:bg-gold-500 hover:text-navy-900 transition-all"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <!-- Links -->
+                <div>
+                    <h4 class="text-white font-serif uppercase tracking-widest mb-6">Quick Links</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-gold-500 transition-colors">About Us</a></li>
+                        <li><a href="#" class="hover:text-gold-500 transition-colors">Our Team</a></li>
+                        <li><a href="#" class="hover:text-gold-500 transition-colors">Practice Areas</a></li>
+                        <li><a href="#" class="hover:text-gold-500 transition-colors">Client Testimonials</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-white font-serif uppercase tracking-widest mb-6">Contact Info</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-gold-500 mt-1 mr-3"></i>
+                            <span>123 Justice Avenue, Blue Area,<br>Islamabad, Pakistan</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone text-gold-500 mr-3"></i>
+                            <span>+92 300 123 4567</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-gold-500 mr-3"></i>
+                            <span>contact@digitaljustice.pk</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h4 class="text-white font-serif uppercase tracking-widest mb-6">Newsletter</h4>
+                    <p class="text-gray-500 text-xs mb-4">Subscribe for legal updates and news.</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Your Email" class="bg-navy-800 border-none text-white text-sm px-4 py-2 w-full focus:ring-1 focus:ring-gold-500 outline-none rounded-l-sm">
+                        <button class="bg-gold-600 text-navy-950 px-4 py-2 rounded-r-sm hover:bg-gold-500 transition-colors font-bold">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-navy-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-600">
+                <p>&copy; 2025 Digital Justice. All Rights Reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-gold-500">Privacy Policy</a>
+                    <a href="#" class="hover:text-gold-500">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JavaScript -->
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Check if user is returning from a practice area page after form submission
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if there's a return page stored in sessionStorage
+            const returnPage = sessionStorage.getItem('returnPage');
+            const activateForm = sessionStorage.getItem('activateForm');
+
+            if (returnPage) {
+                // Clear the stored return page
+                sessionStorage.removeItem('returnPage');
+
+                // Add a return button to the contact section
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                    const returnButton = document.createElement('div');
+                    returnButton.className = 'text-center mt-4';
+                    returnButton.innerHTML = `
+                        <a href="${returnPage}" class="inline-block px-6 py-2 border border-gold-500 text-gold-400 hover:text-white hover:border-gold-400 font-bold rounded uppercase tracking-widest text-xs transition-all">
+                            <i class="fas fa-arrow-left mr-2"></i>Back to Practice Area
+                        </a>
+                    `;
+                    contactSection.appendChild(returnButton);
+                }
+            }
+
+            // If form activation is requested, ensure the contact section is visible
+            if (activateForm) {
+                sessionStorage.removeItem('activateForm');
+
+                // Scroll to the contact section
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                    // Use a more reliable scroll method that works with iframes
+                    const scrollToContact = () => {
+                        contactSection.scrollIntoView({ behavior: 'smooth' });
+
+                        // Add visual feedback to highlight the form
+                        const formContainer = contactSection.querySelector('.bg-navy-800');
+                        if (formContainer) {
+                            formContainer.style.boxShadow = '0 0 20px rgba(212, 175, 55, 0.6)';
+                            setTimeout(() => {
+                                formContainer.style.boxShadow = '';
+                            }, 2000);
+                        }
+                    };
+
+                    // Try scrolling immediately, and if it fails (due to iframe loading), try again
+                    scrollToContact();
+
+                    // Also set up a fallback in case the iframe interferes
+                    setTimeout(scrollToContact, 1000);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

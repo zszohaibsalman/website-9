@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corporate Law - Digital Justice</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+
+    <!-- Tailwind CSS with Custom Configuration -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            800: '#1e293b',
+                            900: '#0f172a',
+                            950: '#020617', // Deepest Navy
+                        },
+                        gold: {
+                            300: '#FDE68A',
+                            400: '#fbbf24',
+                            500: '#D4AF37', // Classic Metallic Gold
+                            600: '#B4941F',
+                            light: '#f3e5ab',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Cinzel', 'serif'],
+                        sans: ['Lato', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "linear-gradient(to bottom, rgba(2, 6, 23, 0.85), rgba(2, 6, 23, 0.95))",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS (Assuming relative path is kept) -->
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    
+    <style>
+        /* Fallback if external CSS fails */
+        .gold-text-shadow {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .fade-in-up {
+            opacity: 1;
+            transform: translateY(0);
+            animation: fadeInUp 1s ease-out;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .mobile-menu-enter {
+            animation: slideIn 0.3s ease-out forwards;
+        }
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+    </style>
+</head>
+<body class="bg-navy-950 font-sans text-gray-300 overflow-x-hidden">
+
+    <!-- NAVIGATION -->
+    <nav class="fixed w-full z-50 bg-navy-950/95 backdrop-blur-md border-b border-gold-600/30 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+
+                <!-- Left Side: Back Button (Mobile) + Logo -->
+                <div class="flex items-center">
+                    <!-- Mobile Back Button -->
+                    <a href="../index.html" class="lg:hidden mr-4 text-gold-500 hover:text-white transition-colors p-1" aria-label="Go Back">
+                        <i class="fas fa-arrow-left text-xl"></i>
+                    </a>
+
+                    <!-- Logo -->
+                    <div class="flex-shrink-0 flex flex-col justify-center">
+                        <a href="../index.html" class="font-serif text-xl sm:text-2xl font-bold text-gold-500 tracking-widest uppercase">
+                            Digital Justice
+                        </a>
+                        <div class="h-1 w-12 bg-gradient-to-r from-gold-500 to-transparent mt-1 transform -skew-x-12"></div>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu (Hidden on Mobile) -->
+                <div class="hidden lg:block">
+                    <div class="ml-10 flex items-baseline space-x-8 font-serif text-xs tracking-widest text-gold-300">
+                        <a href="../index.html#home" class="hover:text-white transition-colors duration-300 uppercase">Home</a>
+                        <a href="../index.html#services" class="hover:text-white transition-colors duration-300 uppercase">Services</a>
+                        <a href="../index.html#attorneys" class="hover:text-white transition-colors duration-300 uppercase">Our Team</a>
+                        <a href="../index.html#faq" class="hover:text-white transition-colors duration-300 uppercase">FAQ</a>
+                    </div>
+                </div>
+
+                <!-- Desktop CTA (Hidden on Mobile) -->
+                <div class="hidden lg:block">
+                    <a href="../index.html#contact" onclick="scrollToForm()" class="bg-gradient-to-r from-gold-600 to-gold-500 text-navy-950 px-6 py-2 rounded-sm font-bold text-xs uppercase tracking-wider hover:brightness-110 transition-all shadow-lg hover:shadow-gold-500/20">
+                        Consultation
+                    </a>
+                </div>
+
+                <!-- Mobile Hamburger Button (Visible on Mobile) -->
+                <div class="-mr-2 flex lg:hidden">
+                    <button type="button" onclick="toggleMenu()" class="inline-flex items-center justify-center p-2 rounded-md text-gold-500 hover:text-white focus:outline-none" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel (Slide-in Drawer) -->
+        <!-- Hidden by default, toggled by JS -->
+        <div class="hidden fixed inset-0 z-50 bg-navy-950/98 mobile-menu-enter" id="mobile-menu">
+            <!-- Close Button -->
+            <div class="flex justify-end p-6">
+                <button onclick="toggleMenu()" class="text-gold-500 hover:text-white">
+                    <i class="fas fa-times text-3xl"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Links -->
+            <div class="px-6 py-8 space-y-6 flex flex-col items-center text-center font-serif tracking-widest">
+                <a href="../index.html#home" onclick="toggleMenu()" class="text-gold-300 hover:text-white text-xl uppercase py-2 border-b border-transparent hover:border-gold-600 transition-all">Home</a>
+                <a href="../index.html#services" onclick="toggleMenu()" class="text-gold-300 hover:text-white text-xl uppercase py-2 border-b border-transparent hover:border-gold-600 transition-all">Services</a>
+                <a href="../index.html#attorneys" onclick="toggleMenu()" class="text-gold-300 hover:text-white text-xl uppercase py-2 border-b border-transparent hover:border-gold-600 transition-all">Our Team</a>
+                <a href="../index.html#contact" onclick="toggleMenu(); scrollToForm();" class="text-gold-300 hover:text-white text-xl uppercase py-2 border-b border-transparent hover:border-gold-600 transition-all">Contact</a>
+
+                <div class="mt-8 w-full max-w-xs">
+                    <a href="../index.html#contact" onclick="toggleMenu(); scrollToForm();" class="block w-full bg-gold-600 text-navy-950 py-4 rounded font-bold uppercase tracking-wider text-sm shadow-lg">
+                        Get Legal Help
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- PAGE HERO -->
+    <section class="relative min-h-[60vh] flex items-center justify-center bg-hero-pattern px-4 sm:px-6 pt-20">
+        <div class="relative z-10 text-center max-w-4xl mx-auto fade-in-up">
+            <div class="inline-block mb-4 px-3 py-1 border border-gold-500/30 rounded-full bg-navy-900/50 backdrop-blur-sm">
+                <span class="text-gold-400 text-[10px] uppercase tracking-[0.2em] font-bold">Practice Area</span>
+            </div>
+
+            <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight gold-text-shadow">
+                Corporate Law
+            </h1>
+
+            <p class="text-gray-300 text-base sm:text-lg md:text-xl mb-10 max-w-3xl mx-auto font-light leading-relaxed">
+                Strategic legal counsel for businesses, startups, and large corporations in compliance and contracts.
+            </p>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-gold-500 text-xl"></i>
+        </div>
+    </section>
+    <!-- MAIN CONTENT -->
+    <section class="py-16 md:py-20 px-4 sm:px-6 bg-navy-900">
+        <div class="max-w-4xl mx-auto">
+            <div class="bg-navy-800 p-6 md:p-12 rounded-lg border border-gold-600/30 shadow-2xl">
+                
+                <!-- RESPONSIVE FIX HERE: Flex-col on mobile, Flex-row on desktop -->
+                <div class="flex flex-col md:flex-row items-center md:items-start mb-8 text-center md:text-left">
+                    <div class="w-16 h-16 bg-navy-900 rounded-full flex items-center justify-center border border-gold-600/30 mb-4 md:mb-0 md:mr-6 flex-shrink-0">
+                        <i class="fas fa-building text-2xl text-gold-500"></i>
+                    </div>
+                    <div>
+                        <h2 class="font-serif text-2xl md:text-3xl lg:text-4xl text-white mb-4">Comprehensive Corporate Law Services</h2>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Our corporate law attorneys provide strategic legal counsel to businesses of all sizes, from startups to established corporations.
+                            We help our clients navigate the complex legal landscape of business operations in Pakistan.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    <!-- Expertise Column -->
+                    <div>
+                        <h3 class="font-serif text-xl text-gold-400 mb-4 text-center md:text-left">Our Expertise Includes:</h3>
+                        <ul class="space-y-3 text-gray-300">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-gold-500 mt-1 mr-3 text-sm flex-shrink-0"></i>
+                                <span class="text-sm">Business formation and incorporation</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-gold-500 mt-1 mr-3 text-sm flex-shrink-0"></i>
+                                <span class="text-sm">Contract drafting and review</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-gold-500 mt-1 mr-3 text-sm flex-shrink-0"></i>
+                                <span class="text-sm">Corporate governance and compliance</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-gold-500 mt-1 mr-3 text-sm flex-shrink-0"></i>
+                                <span class="text-sm">Mergers and acquisitions</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-gold-500 mt-1 mr-3 text-sm flex-shrink-0"></i>
+                                <span class="text-sm">Intellectual property protection</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-gold-500 mt-1 mr-3 text-sm flex-shrink-0"></i>
+                                <span class="text-sm">Employment law and HR compliance</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Why Choose Us Column -->
+                    <div>
+                        <h3 class="font-serif text-xl text-gold-400 mb-4 text-center md:text-left">Why Choose Us:</h3>
+                        <ul class="space-y-3 text-gray-300">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-gold-500 mt-1 mr-3 text-sm flex-shrink-0"></i>
+                                <span class="text-sm">Business-focused legal solutions</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-gold-500 mt-1 mr-3 text-sm flex-shrink-0"></i>
+                                <span class="text-sm">In-depth knowledge of Pakistani corporate law</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-gold-500 mt-1 mr-3 text-sm flex-shrink-0"></i>
+                                <span class="text-sm">Proactive risk management</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-gold-500 mt-1 mr-3 text-sm flex-shrink-0"></i>
+                                <span class="text-sm">Strong negotiation and dispute resolution</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-gold-500 mt-1 mr-3 text-sm flex-shrink-0"></i>
+                                <span class="text-sm">Confidential and discreet service</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <h3 class="font-serif text-2xl text-white mb-6">Need Business Legal Assistance?</h3>
+                    <p class="text-gray-400 mb-8 max-w-2xl mx-auto text-sm sm:text-base">
+                        Protect your business interests with expert legal counsel. Our corporate law team is ready to help you navigate the legal complexities of business operations.
+                    </p>
+                    <a href="../index.html#contact" onclick="scrollToForm()" class="inline-block px-8 py-4 bg-gold-600 hover:bg-gold-500 text-navy-950 font-bold rounded uppercase tracking-widest text-xs sm:text-sm transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(212,175,55,0.4)]">
+                        Schedule a Consultation
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-navy-950 pt-16 pb-8 border-t border-gold-600/20 mt-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12 text-center md:text-left">
+                <!-- Brand -->
+                <div>
+                    <h3 class="font-serif text-2xl text-gold-500 mb-4 font-bold">DIGITAL JUSTICE</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6">
+                        Providing top-tier legal representation with a commitment to integrity, transparency, and results.
+                    </p>
+                    <div class="flex justify-center md:justify-start space-x-4">
+                        <a href="#" class="w-8 h-8 rounded-full bg-navy-800 flex items-center justify-center text-gold-500 hover:bg-gold-500 hover:text-navy-900 transition-all"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-navy-800 flex items-center justify-center text-gold-500 hover:bg-gold-500 hover:text-navy-900 transition-all"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-navy-800 flex items-center justify-center text-gold-500 hover:bg-gold-500 hover:text-navy-900 transition-all"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <!-- Links -->
+                <div>
+                    <h4 class="text-white font-serif uppercase tracking-widest mb-6">Quick Links</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="../index.html" class="hover:text-gold-500 transition-colors">Home</a></li>
+                        <li><a href="../index.html#services" class="hover:text-gold-500 transition-colors">Our Services</a></li>
+                        <li><a href="../index.html#attorneys" class="hover:text-gold-500 transition-colors">Our Team</a></li>
+                        <li><a href="#" class="hover:text-gold-500 transition-colors">Client Testimonials</a></li>
+                    </ul>
+                </div>
+
+                <!-- Practice Areas -->
+                <div>
+                    <h4 class="text-white font-serif uppercase tracking-widest mb-6">Practice Areas</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="criminal-defense.html" class="hover:text-gold-500 transition-colors">Criminal Defense</a></li>
+                        <li><a href="family-law.html" class="hover:text-gold-500 transition-colors">Family Law</a></li>
+                        <li><a href="corporate-law.html" class="hover:text-gold-500 transition-colors">Corporate Law</a></li>
+                        <li><a href="cyber-crime.html" class="hover:text-gold-500 transition-colors">Cyber Crime</a></li>
+                        <li><a href="real-estate.html" class="hover:text-gold-500 transition-colors">Real Estate</a></li>
+                        <li><a href="civil-litigation.html" class="hover:text-gold-500 transition-colors">Civil Litigation</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-white font-serif uppercase tracking-widest mb-6">Contact Info</h4>
+                    <ul class="space-y-4 text-sm text-gray-400 flex flex-col items-center md:items-start">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-gold-500 mt-1 mr-3"></i>
+                            <span>123 Justice Avenue, Blue Area,<br>Islamabad, Pakistan</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone text-gold-500 mr-3"></i>
+                            <span>+92 300 123 4567</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-gold-500 mr-3"></i>
+                            <span>contact@digitaljustice.pk</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-navy-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-600">
+                <p>&copy; 2025 Digital Justice. All Rights Reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-gold-500">Privacy Policy</a>
+                    <a href="#" class="hover:text-gold-500">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JavaScript -->
+    <script>
+        // Inline JS for independent functionality
+        function toggleMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            } else {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-lg', 'bg-navy-950/98');
+            } else {
+                navbar.classList.remove('shadow-lg', 'bg-navy-950/95');
+            }
+        });
+
+        // Function to scroll to consultation form
+        function scrollToForm() {
+            // Store the current page in sessionStorage to return after form submission
+            sessionStorage.setItem('returnPage', window.location.href);
+            // Add flag to activate form immediately
+            sessionStorage.setItem('activateForm', 'true');
+            // Navigate to main page with contact section
+            window.location.href = '../index.html#contact';
+        }
+    </script>
+</body>
+</html>
